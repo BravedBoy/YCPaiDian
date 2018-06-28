@@ -75,6 +75,7 @@ public class LoadDialog extends Dialog {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (canNotCancel) {
                 Toast.makeText(getContext(),tipMsg, Toast.LENGTH_SHORT).show();
+                dismiss(getContext());
                 return true;
             }
         }

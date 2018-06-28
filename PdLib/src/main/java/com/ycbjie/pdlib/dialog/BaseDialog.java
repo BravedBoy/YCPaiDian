@@ -33,7 +33,6 @@ public abstract class BaseDialog extends DialogFragment {
     public enum Local {
         TOP, CENTER, BOTTOM
     }
-
     private static final float DEFAULT_DIM = 0.2f;
 
 
@@ -48,17 +47,16 @@ public abstract class BaseDialog extends DialogFragment {
         setStyle(DialogFragment.STYLE_NO_TITLE, R.style.BottomDialog);
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         getDialog().setCanceledOnTouchOutside(getCancelOutside());
         getDialog().setCancelable(true);
         getDialog().setCanceledOnTouchOutside(true);
-       // View v = inflater.inflate(getLayoutRes(), container, false);
         if(isKeyboardAutoUp){
             getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         }
-
         return v;
     }
 
@@ -86,9 +84,6 @@ public abstract class BaseDialog extends DialogFragment {
         window.setAttributes(params);
     }
 
-    public void setKeyboardAutoUp(boolean isTrue){
-        isKeyboardAutoUp=isTrue;
-    }
 
     @LayoutRes
     public abstract int getLayoutRes();
@@ -153,7 +148,7 @@ public abstract class BaseDialog extends DialogFragment {
     }
 
     public interface onLoadFinishListenter{
-        public void listenter(boolean isSuccess);
+        void listenter(boolean isSuccess);
     }
 
 }

@@ -14,6 +14,7 @@ import com.ycbjie.pdlib.dialog.BaseDialog;
 import com.ycbjie.pdlib.dialog.LoadDialog;
 import com.ycbjie.pdlib.edittext.EditTextAndDel;
 import com.ycbjie.pdlib.share.ShareDialog;
+import com.ycbjie.pdlib.sku.SkuDialog;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView tv_2;
     private TextView tv_3;
     private TextView tv_4;
+    private TextView tv_5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_2 = findViewById(R.id.tv_2);
         tv_3 = findViewById(R.id.tv_3);
         tv_4 = findViewById(R.id.tv_4);
+        tv_5 = findViewById(R.id.tv_5);
         initAmountView();
         initBadgeView();
         initEditTextAndDel();
@@ -50,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_2.setOnClickListener(this);
         tv_3.setOnClickListener(this);
         tv_4.setOnClickListener(this);
+        tv_5.setOnClickListener(this);
     }
 
     /**
@@ -86,10 +90,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initBadgeView() {
+        //创建对象
         BadgeView badgeView = new BadgeView(this);
+        //设置依附的view
         badgeView.setTargetView(tv_1);
+        //设置红点数量
         badgeView.setBadgeCount(10);
+        //设置边距
         badgeView.setBadgeMargin(0,0,0,0);
+        //设置位置
         badgeView.setRedHotViewGravity(Gravity.RIGHT);
     }
 
@@ -137,6 +146,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.tv_4:
                 loadDialog();
                 break;
+            case R.id.tv_5:
+                skuDialog();
+                break;
             default:
                 break;
         }
@@ -151,4 +163,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onBackPressed();
         LoadDialog.dismiss(this);
     }
+
+
+    private void skuDialog() {
+        SkuDialog skuDialog = new SkuDialog();
+        skuDialog.show(getSupportFragmentManager());
+    }
+
+
 }

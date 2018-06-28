@@ -2,6 +2,7 @@ package com.ycbjie.pdlib.amount;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -57,16 +58,15 @@ public class ShopAmountView extends LinearLayout implements View.OnClickListener
 
     public ShopAmountView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context);
-    }
+        TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(attrs, R.styleable.ShopAmountView);
+        int amountWidth = obtainStyledAttributes.getDimensionPixelSize(R.styleable.ShopAmountView_amountWidth, LayoutParams.MATCH_PARENT);
+        int tvTextSize = obtainStyledAttributes.getDimensionPixelSize(R.styleable.ShopAmountView_amountTextSize, 0);
+        obtainStyledAttributes.recycle();
 
-    /**
-     * 做初始化的操作
-     * @param context               上下文
-     */
-    private void init(Context context) {
+
         this.mContext = context;
         LayoutInflater.from(context).inflate(R.layout.amount_cat_view, this);
+        LinearLayout ll_amount = findViewById(R.id.ll_amount);
         mIvSubtract = findViewById(R.id.iv_subtract);
         mEtAmount = findViewById(R.id.et_amount);
         mIvAdd = findViewById(R.id.iv_add);
@@ -74,7 +74,16 @@ public class ShopAmountView extends LinearLayout implements View.OnClickListener
         mIvSubtract.setOnClickListener(this);
         mIvAdd.setOnClickListener(this);
         mEtAmount.addTextChangedListener(textWatcher);
+
+
+        LayoutParams params = new LayoutParams(amountWidth, LayoutParams.WRAP_CONTENT);
+        ll_amount.setLayoutParams(params);
+        if (tvTextSize != 0) {
+            mEtAmount.setTextSize(tvTextSize);
+        }
+
     }
+
 
     @Override
     public void onClick(View v) {

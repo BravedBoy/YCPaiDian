@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ShopAmountView">
+        <!-- 左右2边+-按钮的宽度 -->
+        <attr name="amountWidth" format="dimension" />
+        <!-- 中间TextView的宽度和文字大小 -->
+        <attr name="amountTextSize" format="dimension"/>
+    </declare-styleable>
+
+</resources>

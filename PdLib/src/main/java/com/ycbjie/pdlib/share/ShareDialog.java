@@ -41,7 +41,6 @@ public class ShareDialog extends Dialog implements View.OnClickListener {
     private TextView mTvImg;
     private TextView mTvWxFriend;
     private TextView mTvWxMoment;
-    private FrameLayout mFlCancel;
     private ImageView mIvCancel;
 
     public ShareDialog(Activity context, ShareBean shareBean) {
@@ -103,7 +102,7 @@ public class ShareDialog extends Dialog implements View.OnClickListener {
         mTvImg = (TextView) findViewById(R.id.tv_img);
         mTvWxFriend = (TextView) findViewById(R.id.tv_wx_friend);
         mTvWxMoment = (TextView) findViewById(R.id.tv_wx_moment);
-        mFlCancel = (FrameLayout) findViewById(R.id.fl_cancel);
+        FrameLayout mFlCancel = (FrameLayout) findViewById(R.id.fl_cancel);
         mIvCancel = (ImageView) findViewById(R.id.iv_cancel);
 
         mFlCancel.setOnClickListener(this);

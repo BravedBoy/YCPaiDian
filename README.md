@@ -4,13 +4,16 @@
     * 1.2 使用说明
     * 1.3 出现bug以及解决思路
 - 2.自定义红点控件
+    * 2.1 功能介绍
+    * 2.2 使用说明
 - 3.Loading加载窗
     * 1.1 功能介绍
     * 1.2 使用说明
     * 1.3 出现bug及解决思路
 - 4.adapter封装
 - 5.弹窗封装库
-
+- 6.banner轮播图
+- 7.版本更新说明
 
 
 ### 1.购物车数量加减自定义控件
@@ -45,8 +48,33 @@ avView.setOnAmountChangeListener(new AmountView.OnAmountChangeListener() {
     * 解决办法：a.在该方法添加和移除监听;b.设置控件不可点击
 
 
+### 2.自定义红点控件
+##### 2.1 功能介绍
+- 支持依附view设置红点，灵活方便
+- 当红点大于99时，就显示99+
+- 支持设置tabLayout
+- 支持设置红点的位置，还有设置上下左右的间距
+
+
+##### 2.2 使用说明
+- 如下所示
+```
+//创建对象
+BadgeView badgeView = new BadgeView(this);
+//设置依附的view
+badgeView.setTargetView(tv_1);
+//设置红点数量
+badgeView.setBadgeCount(10);
+//设置边距
+badgeView.setBadgeMargin(0,0,0,0);
+//设置位置
+badgeView.setRedHotViewGravity(Gravity.RIGHT);
+```
+
 ### 3.Loading加载窗
 ##### 1.1 功能介绍
+- 支持全局loading，可以设置loading文字，可以设置自定义布局
+
 
 
 ##### 1.2 使用说明
@@ -60,3 +88,6 @@ avView.setOnAmountChangeListener(new AmountView.OnAmountChangeListener() {
     * 弹出弹窗或者销毁弹窗，当宿主activity不存在时，会导致这种崩溃
     * 解决办法：增加activity是否running判断
 
+### 7.版本更新说明
+- 详细可以见：https://github.com/yangchong211/YCUpdateApp
+- 在build.gradle中直接导入：compile 'cn.yc:YCUpdateLib:1.0.1'

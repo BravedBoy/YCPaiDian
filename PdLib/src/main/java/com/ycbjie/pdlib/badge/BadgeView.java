@@ -210,6 +210,13 @@ public class BadgeView extends AppCompatTextView {
     }
 
 
+    /**
+     * 设置红点属性，上下左右边距
+     * @param leftDipMargin
+     * @param topDipMargin
+     * @param rightDipMargin
+     * @param bottomDipMargin
+     */
     public void setBadgeMargin(int leftDipMargin, int topDipMargin, int rightDipMargin, int bottomDipMargin) {
         FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) getLayoutParams();
         params.leftMargin = dip2Px(leftDipMargin);
@@ -220,7 +227,7 @@ public class BadgeView extends AppCompatTextView {
     }
 
 
-    public int dip2Px(float dip) {
+    private int dip2Px(float dip) {
         return (int) (dip * getContext().getResources().getDisplayMetrics().density + 0.5f);
     }
 
