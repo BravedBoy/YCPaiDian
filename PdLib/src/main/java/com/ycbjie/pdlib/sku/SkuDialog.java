@@ -59,8 +59,6 @@ public class SkuDialog  extends BaseDialogFragment {
                 SkuAdapter skuAdapter = new SkuAdapter(spec_values,getContext());
                 mRecyclerView.setAdapter(skuAdapter);
 
-
-
                 mSkuList.addView(view);
             }
         }
