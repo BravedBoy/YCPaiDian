@@ -1,4 +1,4 @@
-package com.ycbjie.pdlib.dialog;
+package com.ycbjie.pdlib.dialog.dialog;
 
 import android.app.Activity;
 import android.app.Dialog;

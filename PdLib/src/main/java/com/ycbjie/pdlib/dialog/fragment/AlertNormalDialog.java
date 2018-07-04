@@ -1,4 +1,4 @@
-package com.ycbjie.pdlib.dialog;
+package com.ycbjie.pdlib.dialog.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

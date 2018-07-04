@@ -1,4 +1,4 @@
-package com.ycbjie.pdlib.dialog;
+package com.ycbjie.pdlib.dialog.fragment;
 
 
 
@@ -19,17 +19,12 @@ import android.view.WindowManager;
 import com.ycbjie.pdlib.R;
 
 
-/**
- * 这是一个dialog的基类
- * Created by duanzheng on 2018/1/25.
- */
 
 public abstract class BaseDialog extends DialogFragment {
 
     private static final String TAG = "base_bottom_dialog";
     private Local local = Local.BOTTOM;
     private final View v;
-    private boolean isKeyboardAutoUp = false;
     public enum Local {
         TOP, CENTER, BOTTOM
     }
@@ -47,15 +42,14 @@ public abstract class BaseDialog extends DialogFragment {
         setStyle(DialogFragment.STYLE_NO_TITLE, R.style.BottomDialog);
     }
 
-    @SuppressWarnings("ConstantConditions")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-        getDialog().setCanceledOnTouchOutside(getCancelOutside());
-        getDialog().setCancelable(true);
-        getDialog().setCanceledOnTouchOutside(true);
-        if(isKeyboardAutoUp){
-            getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        if(getDialog()!=null){
+            //noinspection ConstantConditions
+            getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+            getDialog().setCanceledOnTouchOutside(getCancelOutside());
+            getDialog().setCancelable(true);
+            getDialog().setCanceledOnTouchOutside(true);
         }
         return v;
     }
@@ -91,7 +85,6 @@ public abstract class BaseDialog extends DialogFragment {
     public abstract void bindView(View v);
 
 
-
     public int getHeight() {
         return -1;
     }
@@ -115,9 +108,6 @@ public abstract class BaseDialog extends DialogFragment {
         }
     }
 
-
-
-
     public void show(FragmentManager fragmentManager) {
         show(fragmentManager, getFragmentTag());
     }
@@ -130,8 +120,8 @@ public abstract class BaseDialog extends DialogFragment {
     public void onDestroy() {
         super.onDestroy();
         //yc 添加结束监听
-        if(mListenter!=null){
-            mListenter.listenter(true);
+        if(mListener!=null){
+            mListener.listener(true);
         }
         if(v!=null){
              ViewParent vp= v.getParent();
@@ -142,13 +132,13 @@ public abstract class BaseDialog extends DialogFragment {
     }
 
 
-    public onLoadFinishListenter mListenter;
-    public void setLoadFinishListenter(onLoadFinishListenter listenter){
-        mListenter=listenter;
+    public onLoadFinishListener mListener;
+    public void setLoadFinishListener(onLoadFinishListener listener){
+        mListener = listener;
+    }
+    public interface onLoadFinishListener{
+        void listener(boolean isSuccess);
     }
 
-    public interface onLoadFinishListenter{
-        void listenter(boolean isSuccess);
-    }
 
 }

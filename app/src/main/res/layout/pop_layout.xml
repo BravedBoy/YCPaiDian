@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:background="@drawable/shape_shop_detail_bg"
+        android:layout_width="166dp"
+        android:orientation="vertical"
+        android:layout_height="109dp">
+
+        <TextView
+            android:layout_marginTop="25dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="已加入购物车"
+            android:textSize="13sp" />
+
+        <TextView
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
+            android:id="@+id/go_balance"
+            android:gravity="center"
+            android:layout_marginLeft="41dp"
+            android:layout_marginRight="45dp"
+            android:background="@drawable/shape_ffe935_bg_ffe935_corners_25dp"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="去结算"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

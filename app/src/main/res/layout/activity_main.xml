@@ -99,7 +99,7 @@
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:background="@color/colorPrimary"
-            android:text="--------"/>
+            android:text="详情页面购物车提示pop弹窗"/>
         <TextView
             android:id="@+id/tv_7"
             android:layout_width="wrap_content"
@@ -108,6 +108,23 @@
             android:gravity="center"
             android:background="@color/colorPrimary"
             android:text="------"/>
+
+        <com.ycbjie.pdlib.image.ARoundImageView
+            android:layout_marginLeft="10dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg_wechatlogin"
+            app:type="round" />
+
+
+        <com.ycbjie.pdlib.image.ARoundImageView
+            android:layout_marginTop="10dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg_wechatlogin"
+            app:type="circle" />
 
     </LinearLayout>
 

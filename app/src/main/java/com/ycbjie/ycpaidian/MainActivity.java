@@ -4,14 +4,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ycbjie.pdlib.amount.ShopAmountView;
 import com.ycbjie.pdlib.badge.BadgeView;
-import com.ycbjie.pdlib.dialog.AlertNormalDialog;
-import com.ycbjie.pdlib.dialog.BaseDialog;
-import com.ycbjie.pdlib.dialog.LoadDialog;
+import com.ycbjie.pdlib.dialog.fragment.AlertNormalDialog;
+import com.ycbjie.pdlib.dialog.fragment.BaseDialog;
+import com.ycbjie.pdlib.dialog.dialog.LoadDialog;
+import com.ycbjie.pdlib.dialog.pop.CustomPopupWindow;
 import com.ycbjie.pdlib.edittext.EditTextAndDel;
 import com.ycbjie.pdlib.share.ShareDialog;
 import com.ycbjie.pdlib.sku.SkuDialog;
@@ -26,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView tv_3;
     private TextView tv_4;
     private TextView tv_5;
+    private TextView tv_6;
+    private CustomPopupWindow popWindow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_3 = findViewById(R.id.tv_3);
         tv_4 = findViewById(R.id.tv_4);
         tv_5 = findViewById(R.id.tv_5);
+        tv_6 = findViewById(R.id.tv_6);
         initAmountView();
         initBadgeView();
         initEditTextAndDel();
@@ -54,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_3.setOnClickListener(this);
         tv_4.setOnClickListener(this);
         tv_5.setOnClickListener(this);
+        tv_6.setOnClickListener(this);
     }
 
     /**
@@ -116,10 +124,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         alertCustomDialog.setContentText("这个是内容");
         alertCustomDialog.setLeftText("取消");
         alertCustomDialog.setRightText("确定");
-        alertCustomDialog.setLoadFinishListenter(new BaseDialog.onLoadFinishListenter() {
+        alertCustomDialog.setLoadFinishListener(new BaseDialog.onLoadFinishListener() {
             @Override
-            public void listenter(boolean isSuccess) {
-                //弹窗load结束监听
+            public void listener(boolean isSuccess) {
+
             }
         });
         alertCustomDialog.show(getSupportFragmentManager());
@@ -149,6 +157,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.tv_5:
                 skuDialog();
                 break;
+            case R.id.tv_6:
+                showShopPop();
+                break;
             default:
                 break;
         }
@@ -170,5 +181,55 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         skuDialog.show(getSupportFragmentManager());
     }
 
+
+    private void showShopPop() {
+        View contentView = LayoutInflater.from(this).inflate(R.layout.pop_layout,null);
+        //处理popWindow 显示内容,自定义布局
+        handleLogic(contentView);
+        //处理popWindow 显示内容,recycleView
+        //handleListView(contentView);
+        //创建并显示popWindow
+        popWindow = new CustomPopupWindow.PopupWindowBuilder(this)
+                //.setView(R.layout.pop_layout)
+                .setView(contentView)
+                .setFocusable(true)
+                //弹出popWindow时，背景是否变暗
+                .enableBackgroundDark(true)
+                //控制亮度
+                .setBgDarkAlpha(0.7f)
+                .setOutsideTouchable(true)
+                .setAnimationStyle(R.style.popWindowStyle)
+                .setOnDissmissListener(new PopupWindow.OnDismissListener() {
+                    @Override
+                    public void onDismiss() {
+                        //对话框销毁时
+                    }
+                })
+                .create();
+        popWindow.showAsDropDown(tv_6,0,-(tv_6.getHeight() + popWindow.getHeight()),Gravity.TOP);
+    }
+
+    /**
+     * 处理弹出显示内容、点击事件等逻辑
+     * @param contentView
+     */
+    private void handleLogic(View contentView){
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (v.getId()){
+                    case R.id.go_balance:
+                        Toast.makeText(MainActivity.this,"吐司",Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        break;
+                }
+                if(popWindow !=null){
+                    popWindow.dismiss();
+                }
+            }
+        };
+        contentView.findViewById(R.id.go_balance).setOnClickListener(listener);
+    }
 
 }
