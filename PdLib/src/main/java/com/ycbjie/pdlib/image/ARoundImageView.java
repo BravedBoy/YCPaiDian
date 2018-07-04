@@ -1,5 +1,6 @@
 package com.ycbjie.pdlib.image;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -91,6 +92,7 @@ public class ARoundImageView extends AppCompatImageView {
         }
     }
 
+    @SuppressLint("DrawAllocation")
     @Override
     protected void onDraw(Canvas canvas) {
         Drawable mDrawable = getDrawable();
