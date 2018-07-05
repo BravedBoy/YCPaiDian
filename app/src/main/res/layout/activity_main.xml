@@ -135,6 +135,43 @@
             android:background="@color/colorPrimary"
             android:text="高斯模糊"/>
 
+
+        <TextView
+            android:id="@+id/tv_9"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:background="@color/colorPrimary"
+            android:text="DES加密"/>
+
+        <TextView
+            android:id="@+id/tv_10"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:background="@color/colorPrimary"
+            android:text="DES解密"/>
+
+        <TextView
+            android:id="@+id/tv_11"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:background="@color/colorPrimary"
+            android:text="AES加密"/>
+
+        <TextView
+            android:id="@+id/tv_12"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:background="@color/colorPrimary"
+            android:text="AES解密"/>
+
     </LinearLayout>
 
 </ScrollView>

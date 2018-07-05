@@ -29,14 +29,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
-/**
- * 日志服务，日志默认会存储在SDCard里，如果没有SDCard会存储在内存中的安装目录下面。
- * 1.本服务默认在SDCard中每天生成一个日志文件,
- * 2.如果有SDCard的话会将之前内存中的文件拷贝到SDCard中
- * 3.如果没有SDCard，在安装目录下只保存当前在写日志
- * 4.SDCard的装载卸载动作会在步骤2,3中切换
- * 5.SDCard中的日志文件只保存7天
- */
+
 public class LogService extends Service {
 
     private static final String TAG = "LogService";

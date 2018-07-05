@@ -18,6 +18,8 @@ import com.ycbjie.pdlib.dialog.fragment.BaseDialog;
 import com.ycbjie.pdlib.dialog.dialog.LoadDialog;
 import com.ycbjie.pdlib.dialog.pop.CustomPopupWindow;
 import com.ycbjie.pdlib.edittext.EditTextAndDel;
+import com.ycbjie.pdlib.encrypt.AES;
+import com.ycbjie.pdlib.encrypt.DES;
 import com.ycbjie.pdlib.share.ShareDialog;
 import com.ycbjie.pdlib.sku.SkuDialog;
 import com.ycbjie.ycpaidian.second.SecondActivity;
@@ -35,7 +37,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView tv_5;
     private TextView tv_6;
     private TextView tv_8;
+    private TextView tv_9;
+    private TextView tv_10;
+    private TextView tv_11;
+    private TextView tv_12;
     private CustomPopupWindow popWindow;
+
+    private String desEncryptString = "yangchong";
+    private String desEncryptKey = "19930311";
+    private String s1;
+    private String encrypt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +67,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_5 = findViewById(R.id.tv_5);
         tv_6 = findViewById(R.id.tv_6);
         tv_8 = findViewById(R.id.tv_8);
+        tv_9 = findViewById(R.id.tv_9);
+        tv_10 = findViewById(R.id.tv_10);
+        tv_11 = findViewById(R.id.tv_11);
+        tv_12 = findViewById(R.id.tv_12);
         initAmountView();
         initBadgeView();
         initEditTextAndDel();
@@ -71,6 +86,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_5.setOnClickListener(this);
         tv_6.setOnClickListener(this);
         tv_8.setOnClickListener(this);
+        tv_9.setOnClickListener(this);
+        tv_10.setOnClickListener(this);
+        tv_11.setOnClickListener(this);
+        tv_12.setOnClickListener(this);
     }
 
     /**
@@ -171,6 +190,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.tv_8:
                 startActivity(new Intent(this, SecondActivity.class));
+                break;
+            case R.id.tv_9:
+                s1 = DES.encryptDES(desEncryptString, desEncryptKey);
+                Log.e("加密和解密", s1);
+                //84r1gS+D3Op8yrSnF5ZDrQ==
+                break;
+            case R.id.tv_10:
+                String s2 = DES.decryptDES(s1, desEncryptKey);
+                Log.e("加密和解密", s2);
+                //加密和解密: yangchong
+                break;
+            case R.id.tv_11:
+                try {
+                    encrypt = AES.encrypt(desEncryptKey, desEncryptString);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                Log.e("加密和解密", encrypt);
+                //加密和解密: CC8619492171D5B4769D37CD46262A0D
+                break;
+            case R.id.tv_12:
+                String decrypt = null;
+                try {
+                    decrypt = AES.decrypt(desEncryptKey, encrypt);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                Log.e("加密和解密", decrypt);
                 break;
             default:
                 break;
