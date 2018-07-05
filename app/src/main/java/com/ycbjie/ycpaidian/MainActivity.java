@@ -1,5 +1,6 @@
 package com.ycbjie.ycpaidian;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,8 @@ import com.ycbjie.pdlib.dialog.pop.CustomPopupWindow;
 import com.ycbjie.pdlib.edittext.EditTextAndDel;
 import com.ycbjie.pdlib.share.ShareDialog;
 import com.ycbjie.pdlib.sku.SkuDialog;
+import com.ycbjie.ycpaidian.second.SecondActivity;
+import com.ycbjie.ycpaidian.service.LogService;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView tv_4;
     private TextView tv_5;
     private TextView tv_6;
+    private TextView tv_8;
     private CustomPopupWindow popWindow;
 
     @Override
@@ -51,9 +55,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_4 = findViewById(R.id.tv_4);
         tv_5 = findViewById(R.id.tv_5);
         tv_6 = findViewById(R.id.tv_6);
+        tv_8 = findViewById(R.id.tv_8);
         initAmountView();
         initBadgeView();
         initEditTextAndDel();
+
+        Intent stateService =  new Intent (this,LogService.class);
+        startService( stateService );
     }
 
     private void initListener() {
@@ -62,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_4.setOnClickListener(this);
         tv_5.setOnClickListener(this);
         tv_6.setOnClickListener(this);
+        tv_8.setOnClickListener(this);
     }
 
     /**
@@ -159,6 +168,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.tv_6:
                 showShopPop();
+                break;
+            case R.id.tv_8:
+                startActivity(new Intent(this, SecondActivity.class));
                 break;
             default:
                 break;
